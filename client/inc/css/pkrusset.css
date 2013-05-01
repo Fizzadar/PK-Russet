@@ -137,26 +137,44 @@ div#overmap, div#players {
 		min-height: 32px;
 		position: absolute;
 	}
-	div#players img {
-		width: 96px;
-		height: 64px;
-		position: absolute;
-	}
 
-div#player {
+div.player {
 	position: absolute;
 	width: 96px;
 	height: 64px;
 	margin: -32px 0 0 -32px;
 }
-	div#player img {
+	div.player img {
 		width: 96px;
 		height: 64px;
 	}
-	div#player div.chat {
+	div.player div.chat {
 		position: absolute;
 		display: none;
+		width: 130px;
+		overflow: hidden;
+		height: 24px;
+		padding: 2px;
+		font-size: 14px;
+		background: rgba( 255, 255, 255, 0.8 );
+		margin-top: -12px;
+		margin-left: -20px;
 	}
+
+	div#player form#pkrusset_chat {
+		position: absolute;
+		display: none;
+		margin-left: -20px;
+		margin-top: -12px;
+		width: 130px;
+	}
+		div#player form#pkrusset_chat input {
+			width: 130px;
+			font-size: 14px;
+			padding: 2px;
+			border: none;
+			background: rgba( 255, 255, 255, 0.8 );
+		}
 
 
 
@@ -486,3 +504,32 @@ div#menu {
 			div#menu ul li a:hover {
 				background: #F7F7F7;
 			}
+
+div#messages {
+	position: fixed;
+	right: 0;
+	top: 40px;
+	width: 200px;
+}
+	div#messages div {
+		margin-right: 10px;
+		margin-top: 10px;
+		padding: 5px;
+		background: white;
+		width: 180px;
+	}
+	div#messages div.success {
+		color: white;
+		background: green;
+		text-shadow: 1px 1px 1px #000;
+	}
+	div#messages div.warning {
+		color: white;
+		background: orange;
+		text-shadow: 1px 1px 1px #000;
+	}
+	div#messages div.error {
+		color: white;
+		background: red;
+		text-shadow: 1px 1px 1px #000;
+	}

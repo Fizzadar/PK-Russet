@@ -78,6 +78,18 @@ var battle = {
             battle.attack( $( ev.delegateTarget ).attr( 'data-move' ) );
         });
 
+        //items
+        $( '.items ul.items', this.container ).empty();
+        for( var i = 0; i < data.player.items.length; i++ ) {
+            var item = data.getItem( data.player.items[i] );
+            if( !item.battleOnly )
+                $( '.items ul.items', this.container ).append( '<li><a href="#" class="use_item" data-item="' + i + '"><strong>' + item.name + '</strong><img src="inc/img/items/' + item.image + '.png" /></a></li>' );
+        }
+        //bind items
+        $( 'ul.items a.use_item', this.container ).bind( 'click', function( ev ) {
+            ev.preventDefault();
+            battle.useItem( $( ev.delegateTarget ).attr( 'data-item' ) );
+        });
 
         //draw team
         $( '.team', this.container ).empty();
@@ -102,7 +114,7 @@ var battle = {
     //begin a battle
     begin: function( d ) {
         if( battle.disabled ) return;
-        if( d.error ) return pkrusset.error( d.error );
+        if( d.error ) return pkrusset.warning( d.error );
         move.disabled = true;
         map.disabled = true;
 
@@ -123,7 +135,7 @@ var battle = {
 
     //end battle
     end: function( d ) {
-        if( d.error ) return pkrusset.error( d.error );
+        if( d.error ) return pkrusset.warning( d.error );
         //do log
         battle.doLog( d.log );
 
@@ -164,7 +176,7 @@ var battle = {
         //catch errors
         if( d.error ) {
             battle.enable();
-            return pkrusset.error( d.error );
+            return pkrusset.warning( d.error );
         }
 
         //do log
@@ -206,6 +218,11 @@ var battle = {
     //run
     run: function() {
         network.send( 'battle_end', { running: true }, battle.end );
+    },
+
+    //use item
+    useItem: function( id ) {
+        network.send( 'battle_move', { item_id: id }, battle.process );
     }
 }
 

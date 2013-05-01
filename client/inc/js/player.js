@@ -6,6 +6,8 @@
 var player = {
     //start
     start: function() {
+        if( typeof editor == 'object' && window.location.search == '?new' ) return true;
+
         if( localStorage.getItem( 'pkrusset_save' ) )
             data.player = JSON.parse( localStorage.getItem( 'pkrusset_save' ) );
 
@@ -20,9 +22,15 @@ var player = {
             ev.preventDefault();
             player.save();
         });
+        //bind new link
         $( 'a.pkrusset_new' ).bind( 'click', function( ev ) {
             ev.preventDefault();
             player.new();
+        });
+        //bind heal link
+        $( 'a.pkrusset_heal' ).bind( 'click', function( ev ) {
+            ev.preventDefault();
+            player.heal();
         });
 
         //no pokemon?
@@ -35,8 +43,21 @@ var player = {
     //save
     save: function() {
         localStorage.setItem( 'pkrusset_save', JSON.stringify( data.player ) );
-        pkrusset.log( 'Player saved' );
+        pkrusset.success( 'Player saved' );
         return true;
+    },
+
+    //heal team (too easy perhaps, but this is a relaxed version of the game)
+    heal: function() {
+        for( var i = 0; i < data.player.pokemon.length; i++ ) {
+            var basepk = data.loadPokemon( data.player.pokemon[i].pokemon_id );
+            data.player.pokemon[i].hp = calculation.hp( data.player.pokemon[i].stats.hp, basepk.stats.hp, data.player.pokemon[i].level );
+            for( key in data.player.pokemon[i].moves ) {
+                var move = data.loadMove( data.player.pokemon[i].moves[key].id );
+                data.player.pokemon[i].moves[key].pp = move.pp;
+            }
+        }
+        pkrusset.success( 'Pokemon healed' );
     },
 
     //new game

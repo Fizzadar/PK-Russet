@@ -21,7 +21,8 @@ var keyboard = {
 		right: 39,
 		//other
 		space: 32,
-		shift: 16
+		shift: 16,
+		enter: 13
 	},
 
 	//add key

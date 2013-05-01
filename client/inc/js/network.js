@@ -35,12 +35,12 @@ var network = {
 		this.callback = callback;
 
 		//make our request
-		if( !this.playServer ) {
+		//if( !this.playServer ) {
 			server.command( command, data )
-		} else {
+		//} else {
 			//SEND OVER SOCKET
 			//send w/ user identifier
-		}
+		//}
 	},
 
 	//complete request
@@ -72,6 +72,10 @@ var network = {
 		mapServer.on( 'connect', function() {
 			network.map.start( mapServer );
 			pkrusset.success( 'Connected to map server' );
+		});
+		//bind errors
+		playServer.on( 'error', function() {
+			pkrusset.warning( 'Could not connect to server' );
 		});
 	}
 };

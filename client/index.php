@@ -1,1 +1,0 @@
-<?php include( 'play.php' ); ?>

@@ -146,18 +146,6 @@ var manage = {
                 $( '.moves ul.moves', this.container ).append( '<li>' + move.name + ' <span>' + v.pp + ' / ' + move.pp + 'pp</span> <a href="#" class="delete_move small" data-move="' + k + '">delete</a></li>' );
             }
         });
-        //evolves to
-        if( basepk.evolves_to ) {
-            var evolvepk = data.loadPokemon( basepk.evolves_to.id );
-            $( '.evolution img', this.container ).attr( 'src', 'inc/img/pokemon/front/' + basepk.evolves_to.id + '.png' );
-
-            $( '.evolution div', this.container ).html( pk.name + ' can evolve to ' + evolvepk.name );
-            if( basepk.evolves_to.level <= pk.level )
-                $( '.evolution div', this.container ).append( ' <a href="#">evolve now</a>' );
-            else
-                $( '.evolution div', this.container ).append( ' at level ' + basepk.evolves_to.level );
-        }
-
         //bind delete moves
         $( 'ul.moves .delete_move', this.container ).bind( 'click', function( ev ) {
             ev.preventDefault();
@@ -171,6 +159,45 @@ var manage = {
 
         //remove any newmoves
         $( '.moves ul.newmoves', this.container ).empty();
+
+
+        //evolves to
+        if( basepk.evolves_to ) {
+            var evolvepk = data.loadPokemon( basepk.evolves_to.id );
+            $( '.evolution img', this.container ).attr( 'src', 'inc/img/pokemon/front/' + basepk.evolves_to.id + '.png' );
+
+            $( '.evolution div', this.container ).html( pk.name + ' can evolve to ' + evolvepk.name );
+            if( basepk.evolves_to.level <= pk.level )
+                $( '.evolution div', this.container ).append( ' <a href="#">evolve now</a>' );
+            else
+                $( '.evolution div', this.container ).append( ' at level ' + basepk.evolves_to.level );
+        }
+        //items
+        $( '.items ul.items', this.container ).empty();
+        for( var i = 0; i < data.player.items.length; i++ ) {
+            var item = data.getItem( data.player.items[i] );
+            if( !item.battleOnly )
+                $( '.items ul.items', this.container ).append( '<li><a href="#" class="use_item" data-item="' + i + '"><strong>' + item.name + '</strong><img src="inc/img/items/' + item.image + '.png" /></a></li>' );
+        }
+        //bind items
+        $( 'ul.items a.use_item', this.container ).bind( 'click', function( ev ) {
+            ev.preventDefault();
+            manage.useItem( $( ev.delegateTarget ).attr( 'data-item' ) );
+        });
+    },
+
+    //use an itme
+    useItem: function( id ) {
+        if( !data.player.items[id] ) return;
+        var item = data.getItem( data.player.items[id] );
+        if( !item ) return;
+
+        //do item function on pokemon
+        item.func( data.player.pokemon[this.highlight_id] );
+        //remove item from user
+        data.player.items.splice( id, 1 );
+        //refresh
+        this.reload();
     },
 
     //delete move

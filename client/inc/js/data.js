@@ -7,6 +7,7 @@ var data = {
 	maps: [],
 	pokemon: [],
 	moves: [],
+	items: {},
 
 	//default map data
 	map: {
@@ -23,7 +24,7 @@ var data = {
 		image: 0,
 		map: 'russet_village',
 		pokemon: [],
-		items: [],
+		items: [ 'potion', 'potion', 'potion', 'poke_ball' ],
 		battle: false //key linked to specific battle
 	},
 
@@ -68,6 +69,15 @@ var data = {
 			speed: 0,
 			hp: 0
 		}
+	},
+
+	//add item
+	addItem: function( key, item ) {
+		this.items[key] = item;
+	},
+	//get item
+	getItem: function( key ) {
+		return this.items[key];
 	},
 
 	//loadmap

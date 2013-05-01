@@ -49,6 +49,7 @@ var map = {
         //bind
         this.on( 'set_position', map.setPosition );
         this.on( 'change_map', map.changeMap );
+        this.on( 'send_chat', map.sendChat );
     },
 
     //change map
@@ -70,9 +71,12 @@ var map = {
             }
         }
 
-        //notify the clients before adding this one
-        for( var i = 0; i < map.clients[data.map].length; i++ )
-            map.clients[data.map][i].emit( 'client_join', { key: this.mapKey, image: this.image } );
+        //notify the clients before adding this one, also send joiner current clients
+        var clients = map.clients[data.map];
+        for( var i = 0; i < clients.length; i++ ) {
+            clients[i].emit( 'client_join', { key: this.mapKey, image: this.image } );
+            this.emit( 'client_join', { key: clients[i].mapKey, image: clients[i].image } );
+        }
 
         //update keytomap
         map.keyToMap[this.mapKey] = data.map;
@@ -94,6 +98,18 @@ var map = {
         for( var i = 0; i < clients.length; i++ )
             if( clients[i].mapKey != this.mapKey )
                 clients[i].volatile.emit( 'position_data', { key: this.mapKey, xpos: data.x, ypos: data.y } );
+    },
+
+    //chat
+    sendChat: function( data ) {
+        if( !this.mapKey || !data.text ) return;
+
+        //get clients
+        var clients = map.clients[map.keyToMap[this.mapKey]];
+
+        for( var i = 0; i < clients.length; i++ )
+            if( clients[i].mapKey != this.mapKey )
+                clients[i].emit( 'receive_chat', { key: this.mapKey, text: data.text } );
     }
 }
 

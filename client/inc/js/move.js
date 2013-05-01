@@ -178,7 +178,7 @@ var move = {
 
 		//move player: if we're over 1/3 way, scroll away!
 		if( data.player.xpos < ( pkrusset.windowWidth / 2.25 + this.mapOffsetX ) && this.mapOffsetX > 0 ) {
-			$( '#map,#overmap' ).animate( { marginLeft: '+=32' }, this.moveInterval );
+			this.map.animate( { marginLeft: '+=32' }, this.moveInterval );
 			this.mapOffsetX -= 1;
 		} else {
 			this.player.animate( { marginLeft: '-=32' }, this.moveInterval );

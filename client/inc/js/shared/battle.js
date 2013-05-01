@@ -18,7 +18,7 @@ var cmds = {
             var out = [];
             var remove = [];
             for( var i = 0; i < pk.length; i++ ) {
-                if( check && ( pk[i].hp < 0 || !pk[i].team ) ) continue;
+                if( check && ( pk[i].hp <= 0 || !pk[i].team ) ) continue;
 
                 //load data
                 var pkdata = data.loadPokemon( pk[i].pokemon_id );
@@ -181,9 +181,21 @@ var cmds = {
             }
         }
         //use an item
-        var doitem = function( pokemon, item_id ) {
+        var doitem = function( item_id ) {
             //check user has item
-            //apply item function to pokemon
+            if( !user.items[item_id] ) return error( 'No item found!' );
+            //get item
+            var item = data.getItem( user.items[item_id] );
+            //apply item function to pokemon/battle
+            var text;
+            if( item.battleOnly )
+                text = item.func( b );
+            else
+                text = item.func( player_pk );
+            //log?
+            if( text ) log.push( { text: text } );
+            //remove item
+            user.items.splice( item_id, 1 );
         }
         //check individual pokemon
         var checkPokemon = function( pokemon_id, team ) {
@@ -246,8 +258,8 @@ var cmds = {
         //attacking, using item or switching
         if( d.move )
             attack( player_pk, enemy_pk, d.move );
-        else if( d.item )
-            doitem( player_pk, d.item );
+        else if( d.item_id )
+            doitem( d.item_id );
         else if( d.pokemon_id )
             swap( d.pokemon_id );
         else

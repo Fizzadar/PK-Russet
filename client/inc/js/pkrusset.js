@@ -39,31 +39,35 @@ var pkrusset = {
 
 	//message (displayed)
 	message: function( text ) {
+		messages.addMessage( '', text );
 		this.log( text );
 	},
 
 	//log success (displayed)
 	success: function( text ) {
+		messages.addMessage( 'success', text );
 		this.log( text );
 	},
 
 	//log warning (displayed)
 	warning: function( text ) {
+		messages.addMessage( 'warning', text );
 		this.log( text );
 	},
 
-	//log msg (console only)
-	log: function( text ) {
-		console.log( '[PK Russet]: ' + text );
-	},
-
-	//log error (console only)
+	//log error (displayed)
 	error: function( text, server ) {
+		messages.addMessage( 'error', text );
 		console.error( '[PK Russet] Error: ' + text );
 
 		if( server ) network.receive( network.command, {} );
 
 		return false;
+	},
+
+	//log msg (console/debug only)
+	log: function( text ) {
+		console.log( '[PK Russet]: ' + text );
 	},
 
 	//add start function
