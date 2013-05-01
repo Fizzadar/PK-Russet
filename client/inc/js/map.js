@@ -46,7 +46,7 @@ var map = {
 			var diffX = Math.abs( data.player.xpos - tile.xpos );
 			var diffY = Math.abs( data.player.ypos - tile.ypos );
 			//only match close elements at certain ypos
-			if( diffX < 20 && diffY < 20 && ( tile.ypos + height ) > data.player.ypos )
+			if( diffX < 80 && diffY < 80 && ( tile.ypos + height ) > data.player.ypos )
 				$( '#overmap' ).append( '<img src="inc/img/tiles/enlarged/' + tile.tile + '.png" style="margin-left:' + ( tile.xpos * 32 ) + 'px;margin-top:' + ( tile.ypos * 32 ) + 'px;" />' );
 		}
 
