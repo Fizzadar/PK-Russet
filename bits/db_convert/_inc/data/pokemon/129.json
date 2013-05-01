@@ -1,0 +1,1 @@
+{"name":"magikarp","height":9,"gender_rate":4,"capture_rate":255,"base_experience":20,"moves":{"33":15,"150":1,"175":30},"types":[11],"stats":{"hp":20,"attack":10,"defense":55,"sAttack":15,"sDefense":20,"speed":80},"growth_rate":1,"evolves_to":{"id":130,"level":20}}

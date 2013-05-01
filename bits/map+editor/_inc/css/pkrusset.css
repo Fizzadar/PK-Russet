@@ -1,0 +1,186 @@
+/*
+	file: css/pkrusset.css
+	desc: main game styles
+*/
+
+/*
+--------------------------Basics--*/
+*::selection {
+	background: transparent;
+}
+
+* {
+	outline: none;
+}
+
+body  {
+	margin: 0;
+	font-family: Arial;
+	font-size: 14px;
+	line-height: 24px;
+	overflow: hidden;
+	background: white;
+}
+
+
+
+/*
+--------------------------Classes--*/
+.hidden {
+	display: none;
+}
+
+.left {
+	float: left;
+}
+.right {
+	float: right;
+}
+
+
+
+/*
+--------------------------Layout--*/
+div#header {
+	font-family: BebasNeue;
+	color: #282828;
+	font-size: 28px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 99;
+	width: 100%;
+	height: 39px;
+	border-bottom: 1px solid #282828;
+	box-shadow: 1px 1px 1px #D7D7D7;
+	background: #FFF url( ../img/header_bg.png ) left -50px repeat-x;
+}
+	div#header h1 {
+		font-weight: normal;
+		margin: 0;
+		font-size: 28px;
+		background: #FFF;
+		border-right: 1px solid #282828;
+		box-shadow: 1px 0px 1px #D7D7D7;
+		float: left;
+	}
+		div#header h1 a {
+			padding: 10px 10px 5px 10px;
+			float: left;
+			color: #282828;
+			text-decoration: none;
+		}
+			div#header h1 a span {
+				color: #C7C7C7;
+			}
+			div#header h1 a:hover span {
+				color: #919191;
+			}
+	div#header ul {
+		margin: 0;
+		padding: 0;
+	}
+		div#header ul li {
+			list-style: none;
+		}
+			div#header ul li a, div#header ul li span {
+				padding: 10px 10px 5px 10px;
+				float: left;
+				color: #333;
+				text-decoration: none;
+				background: rgba( 255, 255, 255, 0.8 );
+				border-right: 1px solid #282828;
+			}
+			div#header ul li.right a, div#header ul li.right span {
+				border-right: none;
+				border-left: 1px solid #282828;
+			}
+			div#header ul li a:hover {
+				background: #FFF;
+			}
+
+div#page_body {
+	position: absolute;
+	top: 40px;
+}
+
+
+div#map_container {
+	background: #FFF;
+}
+
+canvas#map {
+	background: white;
+}
+
+div#overmap {
+	position: absolute;
+}
+	div#overmap div, div#overmap img {
+		min-width: 32px;
+		min-height: 32px;
+		position: absolute;
+	}
+
+div#player {
+	position: absolute;
+	width: 96px;
+	height: 64px;
+	margin: -32px 0 0 -32px;
+}
+	div#player img {
+		width: 96px;
+		height: 64px;
+	}
+
+
+
+div#battle_container, div#manage_container {
+	position: absolute;
+	z-index: 999;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: white;
+	display: none;
+}
+
+
+
+div#loader {
+	position: fixed;
+	z-index: 100;
+	width: 100%;
+	height: 100%;
+	background: rgba( 0, 0, 0, 0.8 );
+	top: 0;
+	left: 0;
+	color: #FFF;
+	text-align: center;
+}
+	div#loader img {
+		margin-top: 200px;
+	}
+	div#loader ul {
+		margin: 0 auto;
+		padding: 20px;
+		border: 5px solid #D7D7D7;
+		width: 200px;
+		background: #FFF;
+		text-align: left;
+	}
+		div#loader ul li {
+			list-style: none;
+			color: #333;
+		}
+		div#loader ul li.info {
+			margin: 20px -20px -20px -20px;
+			font-size: 12px;
+			background: rgba( 254, 239, 179, 1 );
+			padding: 10px 20px;
+			border-top: 1px solid rgba( 159, 96, 0, 1 );
+		}
+			div#loader ul li.info a {
+				color: rgba( 159, 96, 0, 1 );
+			}

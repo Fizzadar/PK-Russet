@@ -1,0 +1,137 @@
+/*
+	file: css/editor.css
+	desc: editor styles/overrides
+*/
+
+/*
+--------------------------Basics--*/
+body {
+	overflow: auto;
+	background: white;
+}
+
+
+/*
+--------------------------Layout--*/
+canvas#map {
+	margin-right: 370px;
+	margin-bottom: 24px;
+	background: url( ../img/map_bg.png ) top left;
+}
+div#overmap {
+	display: none;
+}
+	div#overmap div.block {
+		width: 32px;
+		height: 32px;
+	}
+	div#overmap div.block.nomove, div#overmap div.block.door, div#overmap div.block.pokemon {
+		color: #FFF;
+	}
+
+div#player {
+	display: none;
+}
+
+img#edit_preview {
+	position: absolute;
+	z-index: 97;
+	top: 0;
+	left: 0;
+	opacity: 0.6;
+	min-width: 32px;
+	min-height: 32px;
+}
+textarea#edit_export {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background: #FFF;
+	border-top: 1px solid #D7D7D7;
+	z-index: 99;
+	height: 300px;
+	margin: 0;
+	display: none;
+	white-space: pre-wrap;
+}
+textarea#edit_export::selection {
+	background: #FFFECC;
+}
+div#edit_sidebar {
+	position: fixed;
+	right: 0;
+	width: 340px;
+	background: #F7F7F7;
+	border-left: 1px solid #D7D7D7;
+	height: 100%;
+	top: 40px;
+	z-index: 98;
+	overflow-y: auto;
+}
+	div#edit_sidebar button {
+		background: transparent;
+		width: 85px;
+		padding: 5px;
+		border: 1px solid #C1C1C1;
+		border-top: none;
+		border-left: none;
+		margin: 0;
+		float: left;
+	}
+	div#edit_sidebar button:hover, div#edit_sidebar button.active {
+		background: #FFF;
+	}
+	div#edit_sidebar div#buttons {
+		height: 48px;
+	}
+	div#edit_sidebar div#modes {
+		height: 24px;
+	}
+		div#edit_sidebar div#modes button {
+			width: 170px;
+		}
+	div#edit_sidebar h5 {
+		margin-bottom: 0;
+	}
+	div#edit_sidebar img {
+		padding: 5px;
+	}
+	div#edit_sidebar img:hover {
+		background: rgba( 0, 0, 0, 0.2 );
+	}
+	div#edit_sidebar div#tiles {
+		width: 320px;
+		padding: 0px 10px;
+		padding-top: 0px;
+		float: left;
+		border-top: 1px solid #C1C1C1;
+		margin-top: -1px;
+		overflow: auto;
+	}
+		div#edit_sidebar div#tiles img.tile {
+			max-width: 45%;
+		}
+	div#edit_sidebar div#tiles button {
+		margin: 10px;
+		border: 1px solid #D7D7D7;
+	}
+
+#edit_sidebar button.color_black, #edit_sidebar button.color_black:hover {
+	background: black;
+	color: #FFF;
+}
+#edit_sidebar button.color_orange, #edit_sidebar button.color_orange:hover {
+	background: orange;
+}
+#edit_sidebar button.color_blue, #edit_sidebar button.color_blue:hover {
+	color: #FFF;
+	background: blue;
+}
+#edit_sidebar button.color_green, #edit_sidebar button.color_green:hover {
+	color: #FFF;
+	background: green;
+}
+#edit_sidebar button.block:hover {
+	border: 1px solid #000 !important;
+}

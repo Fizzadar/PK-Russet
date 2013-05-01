@@ -1,0 +1,1 @@
+{"name":"wurmple","height":3,"gender_rate":4,"capture_rate":255,"base_experience":54,"moves":{"33":1,"40":5,"81":1,"450":15},"types":[7],"stats":{"hp":45,"attack":45,"defense":35,"sAttack":20,"sDefense":30,"speed":20},"growth_rate":2,"evolves_to":{"id":266,"level":7}}

@@ -1,0 +1,1 @@
+{"name":"weedle","height":3,"gender_rate":4,"capture_rate":255,"base_experience":52,"moves":{"40":1,"81":1,"450":15},"types":[7,4],"stats":{"hp":40,"attack":35,"defense":30,"sAttack":20,"sDefense":20,"speed":50},"growth_rate":2,"evolves_to":{"id":14,"level":7}}

@@ -1,0 +1,4 @@
+RewriteEngine on
+
+RewriteRule ^edit$ edit.php [L]
+RewriteRule ^help$ help.php [L]

@@ -1,0 +1,488 @@
+/*
+	file: css/pkrusset.css
+	desc: main game styles
+*/
+
+/*
+--------------------------Basics--*/
+*::selection {
+	background: transparent;
+}
+
+* {
+	outline: none;
+}
+
+body  {
+	margin: 0;
+	font-family: Arial;
+	font-size: 14px;
+	line-height: 24px;
+	overflow: hidden;
+	background: white;
+}
+
+a {
+	color: rgb(85, 26, 139);
+	color: #32437F;
+}
+
+
+/*
+--------------------------Classes--*/
+.hidden {
+	display: none;
+}
+
+.left {
+	float: left;
+}
+.right {
+	float: right;
+}
+
+.disabled {
+	opacity: 0.5;
+}
+
+
+
+/*
+--------------------------Layout--*/
+div.wrap {
+	margin: 0 auto;
+	min-width: 800px;
+	max-width: 1200px;
+	height: 300px;
+}
+
+div#header {
+	font-family: BebasNeue;
+	color: #282828;
+	font-size: 28px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 99999;
+	width: 100%;
+	height: 39px;
+	border-bottom: 1px solid #282828;
+	box-shadow: 1px 1px 1px #D7D7D7;
+	background: #FFF url( ../img/header_bg.png ) left -50px repeat-x;
+}
+	div#header h1 {
+		font-weight: normal;
+		margin: 0;
+		font-size: 28px;
+		background: #FFF;
+		border-right: 1px solid #282828;
+		box-shadow: 1px 0px 1px #D7D7D7;
+		float: left;
+	}
+		div#header h1 a {
+			padding: 10px 10px 5px 10px;
+			float: left;
+			color: #282828;
+			text-decoration: none;
+		}
+			div#header h1 a span {
+				color: #C7C7C7;
+			}
+			div#header h1 a:hover span {
+				color: #919191;
+			}
+	div#header ul {
+		margin: 0;
+		padding: 0;
+	}
+		div#header ul li {
+			list-style: none;
+		}
+			div#header ul li a, div#header ul li span {
+				padding: 10px 10px 5px 10px;
+				float: left;
+				color: #333;
+				text-decoration: none;
+				background: rgba( 255, 255, 255, 0.8 );
+				border-right: 1px solid #282828;
+			}
+			div#header ul li.right a, div#header ul li.right span {
+				border-right: none;
+				border-left: 1px solid #282828;
+			}
+			div#header ul li a:hover {
+				background: #FFF;
+			}
+
+div#page_body {
+	position: absolute;
+	top: 40px;
+	width: 100%;
+}
+
+div#map_container {
+	background: #FFF;
+}
+
+canvas#map {
+	background: white;
+}
+
+div#overmap, div#players {
+	position: absolute;
+	z-index: 998;
+}
+	div#overmap div, div#overmap img {
+		min-width: 32px;
+		min-height: 32px;
+		position: absolute;
+	}
+	div#players img {
+		width: 96px;
+		height: 64px;
+		position: absolute;
+	}
+
+div#player {
+	position: absolute;
+	width: 96px;
+	height: 64px;
+	margin: -32px 0 0 -32px;
+}
+	div#player img {
+		width: 96px;
+		height: 64px;
+	}
+	div#player div.chat {
+		position: absolute;
+		display: none;
+	}
+
+
+
+div#battle_container, div#manage_container {
+	position: fixed;
+	z-index: 999;
+	top: 40px;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: white;
+	width: 100%;
+	display: none;
+}
+
+	div#battle_container div.pokemon {
+		background: #F7F7F7 url( ../img/map_bg.png );
+		border-bottom: 1px solid #D7D7D7;
+		height: 400px;
+	}
+		div#battle_container div.pokemon div.pokemon {
+			background: url( ../img/battlebg/grass.png ) center 80% no-repeat;
+			border: none;
+		}
+		div#battle_container div.pokemon div#mine {
+			float: left;
+			margin-top: 50px;
+		}
+			div#battle_container div.pokemon div#mine img {
+				margin-top: -20px;
+			}
+		div#battle_container div.pokemon div#enemy {
+			float: right;
+		}
+		div#battle_container div.pokemon div.hp {
+			position: absolute;
+			background: #FFF;
+			width: 300px;
+			border: 1px solid #333;
+			margin-left: 40px;
+			background: #666;
+		}
+			div#battle_container div.pokemon div#enemy div.hp {
+				margin-top: -40px;
+			}
+			div#battle_container div.pokemon div.hp div {
+				background: green;
+				color: #FFF;
+				padding: 5px 0;
+				text-indent: 5px;
+			}
+			div#battle_container div.pokemon div.hp div.yellow {
+				background: yellow;
+				color: #000;
+			}
+			div#battle_container div.pokemon div.hp div.orange {
+				background: orange;
+				color: #000;
+			}
+			div#battle_container div.pokemon div.hp div.red {
+				background: red;
+				color: #000;
+			}
+	div#battle_container div#log {
+		position: absolute;
+		left: 50%;
+		margin-left: -106px;
+		margin-top: -207px;
+		width: 200px;
+		height: 200px;
+		background: #FFF;
+		border: 1px solid #D7D7D7;
+		border-bottom: none;
+		padding: 5px 5px 0 5px;
+		overflow: auto;
+	}
+	div#battle_container a#close {
+		position: absolute;
+		left: 50%;
+		margin-left: -106px;
+		margin-top: -247px;
+		width: 200px;
+		height: 50px;
+		background: #FFF;
+		border: 1px solid #D7D7D7;
+		border-bottom: none;
+		padding: 10px 5px 0 5px;
+		overflow: auto;
+		text-align: center;
+		font-size: 30px;
+		text-decoration: none;
+		display: none;
+	}
+	div#battle_container div#control {
+		width: 100%;
+		margin-top: 50px;
+	}
+		div#battle_container div#control ul.tabs {
+			margin: 0;
+			padding: 0;
+			float: left;
+			width: 100%;
+			font-size: 18px;
+			padding-bottom: 1px;
+			margin-bottom: 10px;
+			margin-top: -47px;
+			text-align: center;
+		}
+			div#battle_container div#control ul.tabs li {
+				list-style: none;
+				display: inline;
+			}
+				div#battle_container div#control ul.tabs li a {
+					text-decoration: none;
+					padding: 5px;
+				}
+				div#battle_container div#control ul.tabs li.active a, div#battle_container div#control ul.tabs li a:hover {
+					background: #F7F7F7;
+				}
+		div#battle_container div#control div.tab {
+			float: left;
+			width: 100%;
+			margin-left: 1%;
+			display: none;
+		}
+			div#battle_container div#control div.attack a {
+				float: left;
+				width: 46%;
+				margin-right: 1%;
+				margin-bottom: 1%;
+				height: 50px;
+				padding: 1%;
+				border: 1px dotted #D7D7D7;
+				font-weight: bold;
+				text-decoration: none;
+			}
+			div#battle_container div#control div.attack a:hover {
+				background: #F7F7F7;
+			}
+				div#battle_container div#control div.attack a span {
+					float: left;
+					width: 100%;
+					font-size: 12px;
+					font-family: Verdana;
+					text-transform: uppercase;
+					font-weight: normal;
+				}
+
+	div.team a {
+		float: left;
+		width: 16%;
+		margin-right: 1%;
+		padding: 1%;
+		text-align: center;
+		border: 1px dotted #D7D7D7;
+	}
+	div.team a:hover {
+		background: #F7F7F7;
+	}
+		div.team a img {
+			width: 128px;
+		}
+		div.team a strong {
+			display: block;
+		}
+
+
+	div#manage_container div.pokemon {
+		float: left;
+		width: 30%;
+	}
+		div#manage_container div.pokemon img {
+			background: #FFF url( ../img/map_bg.png );
+			border-left: 1px dashed #F7F7F7;
+		}
+		div#manage_container div.pokemon ul.tabs {
+			padding: 0;
+			margin: 0;
+			text-align: center;
+			border-bottom: 1px solid #D7D7D7;
+			padding-bottom: 1px;
+		}
+			div#manage_container div.pokemon ul.tabs li {
+				list-style: none;
+				display: inline;
+			}
+				div#manage_container div.pokemon ul.tabs li a {
+					text-decoration: none;
+					padding: 5px;
+				}
+				div#manage_container div.pokemon ul.tabs li.active a, div#manage_container div.pokemon ul.tabs li a:hover {
+					background: #F7F7F7;
+				}
+		div#manage_container div.pokemon div.tab {
+			display: none;
+		}
+	div#manage_container table.pokemon {
+		float: right;
+		width: 66%;
+		margin-top: 90px;
+	}
+		div#manage_container table.pokemon img.icon {
+			width: 64px;
+		}
+		div#manage_container table.pokemon th {
+			text-align: left;
+			background: #F7F7F7;
+			border-bottom: 1px solid #D7D7D7;
+			padding: 5px;
+		}
+		div#manage_container table.pokemon td {
+			padding: 5px;
+		}
+			div#manage_container table.pokemon tbody tr:hover {
+				background: #F7F7F7;
+			}
+
+	div#manage_container div.stats {
+	}
+		div#manage_container div.stats table {
+			width: 100%;
+		}
+		div#manage_container div.evolution img {
+			width: 64px;
+		}
+		div#manage_container div.moves ul.newmoves {
+			max-height: 90px;
+			background: #F7F7F7;
+			overflow: auto;
+		}
+			div#manage_container div.moves ul li {
+			}
+				div#manage_container div.moves ul li span {
+					display: block;
+					font-size: 11px;
+					font-family: Verdana;
+					line-height: 16px;
+					text-transform: uppercase;
+				}
+				div#manage_container div.moves ul li a.small {
+					font-size: 12px;
+				}
+
+
+div#loader, div#overlay {
+	position: fixed;
+	z-index: 1000;
+	width: 100%;
+	height: 100%;
+	background: rgba( 0, 0, 0, 0.8 );
+	top: 0;
+	left: 0;
+	color: #FFF;
+	text-align: center;
+}
+	div#loader img {
+		margin-top: 200px;
+	}
+	div#loader ul {
+		margin: 0 auto;
+		padding: 20px;
+		border: 5px solid #D7D7D7;
+		width: 200px;
+		background: #FFF;
+		text-align: left;
+	}
+		div#loader ul li {
+			list-style: none;
+			color: #333;
+		}
+		div#loader ul li.info {
+			margin: 20px -20px -20px -20px;
+			font-size: 12px;
+			background: rgba( 254, 239, 179, 1 );
+			padding: 10px 20px;
+			border-top: 1px solid rgba( 159, 96, 0, 1 );
+		}
+			div#loader ul li.info a {
+				color: rgba( 159, 96, 0, 1 );
+			}
+	div#overlay div.wrap {
+		margin-top: 50px;
+		color: #000;
+		width: 500px;
+	}
+		div#overlay div.wrap div.team {
+			background: white;
+			float: left;
+			width: 100%;
+		}
+			div#overlay div.wrap div.team a {
+				width: 30%;
+			}
+
+
+
+div#menu {
+	position: fixed;
+	z-index: 9999;
+	right: 0;
+	bottom: 0;
+	background: white;
+	border: 1px solid #000;
+	border-right: 0;
+	border-bottom: 0;
+	width: 150px;
+	text-indent: 5px;
+}
+	div#menu ul {
+		display: none;
+		margin: -100px 0 0 0;
+		padding: 0;
+		text-indent: 0;
+	}
+	div#menu:hover ul {
+		display: inline;
+	}
+		div#menu ul li {
+			list-style: none;
+		}
+			div#menu ul li a {
+				float: left;
+				width: 100%;
+				padding: 5px;
+				text-decoration: none;
+			}
+			div#menu ul li a:hover {
+				background: #F7F7F7;
+			}
