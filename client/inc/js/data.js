@@ -5,7 +5,7 @@
 
 var data = {
 	maps: [],
-	pokemon: [],
+	pokemons: [],
 	moves: [],
 	items: {},
 
@@ -128,7 +128,7 @@ var data = {
 
 	//load pokemon
 	loadPokemon: function( id ) {
-		if( this.pokemon[id] ) return this.pokemon[id];
+		if( this.pokemons[id] ) return this.pokemons[id];
 
 		$.ajax({
 			cache: false,
@@ -136,15 +136,15 @@ var data = {
 			dataType: 'json',
 			url: 'inc/data/pokemon/' + id + '.json',
 			success: function( d ) {
-				data.pokemon[id] = d
+				data.pokemons[id] = d
 			},
 			error: function( err ) {
 				pkrusset.error( err );
 			}
 		});
 
-		if( this.pokemon[id] )
-			return this.pokemon[id];
+		if( this.pokemons[id] )
+			return this.pokemons[id];
 		else
 			return false;
 	},
